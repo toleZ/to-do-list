@@ -1,7 +1,9 @@
 const form = document.querySelector('#form')
 const taskInput = document.querySelector('#taskInput')
+const sections = document.querySelector('#sections')
 const nextUp = document.querySelector('#nextUp')
 const completed = document.querySelector('#completed')
+const newSectionBtn = document.querySelector('#newSectionBtn')
 
 theme.addEventListener('click', () => {
   const themeBtn = document.querySelector('#theme')
@@ -27,23 +29,12 @@ theme.addEventListener('click', () => {
       )
 })
 
+new Sortable(sections)
+
 new Sortable(nextUp, {
-  onChange: (evt) => {
-    const {item, from} = evt
-    if(from.id === 'completed'){
-      item.classList.remove('completed')
-    }
-  },
   group: 'shared'
 })
-
 new Sortable(completed, {
-  onChange: (evt) => {
-    const {item, from} = evt
-    if(from.id === 'nextUp'){
-      item.classList.add('completed')
-    } 
-  },
   group: 'shared'
 })
 
@@ -51,13 +42,7 @@ const createIcons = (task) => {
   let checkBox = document.createElement('input')
   checkBox.setAttribute('type','checkbox')
   checkBox.addEventListener('change', () => {
-   if(checkBox.checked == true){
-     task.classList.add('completed')
-     completed.appendChild(task)
-   }else{
-     task.classList.remove('completed')
-     nextUp.appendChild(task)
-   }
+   checkBox.checked === true ? task.classList.add('completed') : task.classList.remove('completed')
   })
 
   let trashIcon = document.createElement('i')
@@ -72,6 +57,8 @@ const createIcons = (task) => {
   task.append(span)
 }
 const createTask = (task) => {
+  if(task.replace(/ /g,'') === '' || task === null)return
+  
   let taskLi = document.createElement('li')
   taskLi.innerText = task
   taskLi.className = 'task'
@@ -84,7 +71,32 @@ form.addEventListener('submit', async event => {
   event.preventDefault()
 
   const task = createTask(taskInput.value)
-  nextUp.append(task)
-
   taskInput.value = ''
+
+  if(task === undefined) return
+  nextUp.append(task)
 })
+
+const newSection = () => {
+  const str = prompt('Enter your section')
+
+  if(str === '' || str === null) return
+
+  const title = document.createElement('h2')
+  title.innerText = str
+  title.classList = 'sectionTitle'
+
+  const section = document.createElement('section')
+  section.classList.add(str)
+  section.id = str
+
+  new Sortable(section, {
+    group: 'shared'
+  })
+
+  const div = document.createElement('div')
+  div.append(title, section)
+
+  sections.append(div)
+}
+newSectionBtn.addEventListener('click', newSection)

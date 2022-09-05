@@ -12,7 +12,7 @@
   <form id="form">
     <label>
       Task
-      <input required type="text" id="taskInput" placeholder="Enter your task here">
+      <input required type="text" id="taskInput" placeholder="Enter your task here" autocomplete="off">
     </label>
     
 
@@ -20,17 +20,20 @@
   </form>
 
   <article class="taskContainer">
-    <ul>
+    <i class="fa-solid fa-plus" id="newSectionBtn"></i>
+    <div id="sections">
+      <div>
+        <h2 class="sectionTitle">next up</h2>    
+        <section id="nextUp">
+        </section>
+      </div>
 
-      <h2>Next up</h2>    
-      <section id="nextUp">
-      </section>
-
-      <h2>Completed</h2>
-      <section id="completed">
-      </section>
-
-    </ul>
+      <div>
+        <h2 class="sectionTitle">completed</h2>
+        <section id="completed">
+        </section>
+      </div>
+    </div>
   </article>
 
   <i class="fa-solid fa-circle-half-stroke" id="theme"></i>
