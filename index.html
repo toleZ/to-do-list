@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+<script src="https://kit.fontawesome.com/f69af0a338.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js" integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<div class="container">
+  <form id="form">
+    <label>
+      Task
+      <input required type="text" id="taskInput" placeholder="Enter your task here">
+    </label>
+    
+
+    <button type="submit" id="addBtn">Add task</button>
+  </form>
+
+  <article class="taskContainer">
+    <ul>
+
+      <h2>Next up</h2>    
+      <section id="nextUp">
+      </section>
+
+      <h2>Completed</h2>
+      <section id="completed">
+      </section>
+
+    </ul>
+  </article>
+
+  <i class="fa-solid fa-circle-half-stroke" id="theme"></i>
+</div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
